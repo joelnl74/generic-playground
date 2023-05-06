@@ -1,6 +1,7 @@
 # generic-playground
 Unity generic components
 - Messaging decouple systems by using messaging to different systems in your game
+- Singleton contains generic singleton wrapper class
 
 
 ## Messaging:
