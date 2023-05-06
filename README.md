@@ -4,7 +4,7 @@ Unity generic components
 
 
 ## Messaging:
-Download package: 
+Download package: https://joel-van-der-werf.com/messagebus.rar 
 
 ### Messaging example:
 
