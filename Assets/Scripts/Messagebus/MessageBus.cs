@@ -10,10 +10,9 @@ namespace Messaging
         ,IMessageBus
     {
         /// <summary>
-        /// Collection containing all subscribers for a type of message. The listeners are stored as a weakReference, so they are auto un subscribing.
+        /// Collection containing all subscribers for a type of message.
         /// </summary>
         private readonly Dictionary<Type, List<WeakReference>> _subscribers = new();
-
         private readonly object _lockObject = new();
 
         /// <summary>
@@ -21,13 +20,11 @@ namespace Messaging
         /// </summary>
         public void Publish<T>(T message) where T : IMessage
         {
-            var subscriberType = typeof(ISubscriber<>).MakeGenericType(typeof(T));
+            Type subscriberType = typeof(ISubscriber<>).MakeGenericType(typeof(T));
 
-            var subscribers = GetSubscriberList(subscriberType);
+            List<WeakReference> subscribers = GetSubscriberList(subscriberType);
+            List<WeakReference> subsToRemove = new();
 
-            var subsToRemove = new List<WeakReference>();
-
-            // Loop over all subscribers for message of type T, when the weak reference is no longer alive, we will remove it from the subscribers.
             for (int i = 0; i < subscribers.Count; i++)
             {
                 WeakReference weakSubscriber = subscribers[i];
@@ -57,14 +54,13 @@ namespace Messaging
         }
 
         /// <summary>
-        /// Subscribe a object to receive messages for all implementations of ISubscriber.
+        /// Subscribe a object to receive messages.
         /// </summary>
         public void Subscribe(object subscriber)
         {
             lock (_lockObject)
             {
-                // Get all implementations of the ISubscriber interface, a object can listen to multiple messages.
-                var subscriberTypes =
+                IEnumerable<Type> subscriberTypes =
                     subscriber.GetType()
                         .GetInterfaces()
                         .Where(i => i.IsGenericType && i.GetGenericTypeDefinition() == typeof(ISubscriber<>));
