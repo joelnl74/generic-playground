@@ -6,8 +6,7 @@ public class ToastPresenter : IToastPresenter
 {
     private IMessageBus _messageBus;
 
-    [Inject]
-    public void Init(IMessageBus messageBus)
+    public ToastPresenter(IMessageBus messageBus)
     {
         _messageBus = messageBus;
     }
