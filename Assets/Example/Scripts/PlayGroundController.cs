@@ -1,25 +1,21 @@
 using Messaging;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 public class PlayGroundController : MonoBehaviour
 {
     [SerializeField] private Button _toastTextButton;
 
-    private MessageBus _messageBus;
+    private IToastPresenter _toastPresenter;
+
+    [Inject]
+    public void Init(IToastPresenter toastPresenter)
+        => _toastPresenter = toastPresenter;
 
     void Awake()
-    {
-        _messageBus = MessageBus.Get();
-        _toastTextButton.onClick.AddListener(ShowToast);
-    }
+        => _toastTextButton.onClick.AddListener(ShowToast);
 
     private void ShowToast()
-    {
-        _messageBus.Publish(new ToastMessage()
-        {
-            title = "Test Title",
-            message = "Test toast message"
-        });
-    }
+        => _toastPresenter.Publish("test", "message");
 }

@@ -3,11 +3,11 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 
 namespace Messaging
 {
-    public class MessageBus : Singleton<MessageBus>
-        ,IMessageBus
+    public class MessageBus : IMessageBus
     {
         /// <summary>
         /// Collection containing all subscribers for a type of message.
