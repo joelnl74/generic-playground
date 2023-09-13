@@ -1,7 +1,9 @@
 # generic-playground
 Unity generic components
 - Messaging decouple systems by using messaging to different systems in your game
-- Singleton contains generic singleton wrapper class
+- Singleton contains a generic singleton wrapper class
+- Zenject by https://github.com/modesttree/Zenject for dependency injection
+- Presenter view view controller architecture
 
 
 ## Messaging:
