@@ -11,6 +11,6 @@ public class MainInstaller : MonoInstaller
         Container.Bind<IMessageBus>().To<MessageBus>().AsSingle();
 
         // Presenter
-        Container.Bind<IToastPresenter>().To<ToastPresenter>().AsSingle();
+        Container.Bind<IGatchaPresenter>().To<GatchaPresenter>().AsSingle();
     }
 }
