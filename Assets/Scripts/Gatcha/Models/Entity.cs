@@ -10,7 +10,7 @@ namespace Gatcha
     public enum EntityRarity
     {
         None,
-        Normale,
+        Normal,
         Rare,
         Epic,
         Legendary
