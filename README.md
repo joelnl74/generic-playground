@@ -4,6 +4,7 @@ Unity generic components
 - Singleton contains a generic singleton wrapper class
 - Zenject by https://github.com/modesttree/Zenject for dependency injection
 - Presenter view view controller architecture
+- MVVP Core view architecture (Model, viewcontroller, view, presenter)
 
 
 ## Messaging:
